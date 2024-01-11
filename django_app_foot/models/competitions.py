@@ -1,4 +1,5 @@
 from django.db import models
+from models import COUNTRY
 
 class Competition(models.Model):
     CONFEDERATION = [

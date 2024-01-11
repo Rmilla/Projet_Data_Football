@@ -1,4 +1,5 @@
 from django.db import models
+from models import COMPETITION, HOME_CLUB, AWAY_CLUB
 
 class Games(models.Model):
     season = models.IntegerField()
