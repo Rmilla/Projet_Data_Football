@@ -11,7 +11,10 @@ class Command(BaseCommand):
         # Charger le fichier CSV avec pandas
         data = pd.read_csv('django_app_foot/management/archive/appearances.csv')
 
-        # Iterer sur les lignes du dataframe et enregistrer dans la base de données
+        # Créer une liste pour stocker les instances à créer
+        instances_to_create = []
+
+        # Iterer sur les lignes du dataframe et ajouter les instances à la liste
         for index, row in tqdm(data.iterrows(), desc='Importation des données', total=len(data)):
             mon_modele_instance = Appearance(
                 appearance_id=row['appearance_id'],
@@ -27,9 +30,11 @@ class Command(BaseCommand):
                 goals=row['goals'],
                 assists=row['assists'],
                 minutes_played=row['minutes_played'],
-               
                 # ... assignez d'autres champs comme requis
             )
-            mon_modele_instance.save()
+            instances_to_create.append(mon_modele_instance)
+
+        
+        Appearance.objects.bulk_create(instances_to_create)
 
         self.stdout.write(self.style.SUCCESS('Données importées avec succès.'))

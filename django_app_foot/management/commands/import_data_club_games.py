@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 own_manager_name=row['own_manager_name'],
                 opponent_id=row['opponent_id'],
                 opponent_goals=row['opponent_goals'],
-                opponents_position=row['opponents_position'],
+                opponent_position=row['opponent_position'],
                 opponent_manager_name=row['opponent_manager_name'],
                 hosting=row['hosting'],
   
