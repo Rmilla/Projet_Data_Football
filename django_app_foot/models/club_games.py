@@ -2,7 +2,6 @@ from django.db import models
 
 class Club_games(models.Model):
     game_id = models.IntegerField()
-    
     club_id = models.IntegerField()
     own_goals = models.IntegerField()
     own_position = models.IntegerField()
