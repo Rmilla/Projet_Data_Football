@@ -6,12 +6,12 @@ class COMPETITION(models.Model):
     CONFEDERATION = [
         ("EU", "europa")
     ]
-    competition_code = models.CharField()
+    competition_code = models.CharField(max_length=5)
     name = models.CharField()
     sub_type = models.CharField()
     type = models.CharField()
     country_name = models.CharField()
     domestic_league_code = models.CharField()
     confederation = models.CharField(choices=CONFEDERATION)
-    url = models.CharField()
+    url = models.URLField()
     country_id = models.ForeignKey(COUNTRY, on_delete=models.CASCADE, related_name='competition')
