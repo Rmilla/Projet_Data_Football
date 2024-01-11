@@ -2,6 +2,7 @@ from django.db import models
 from models import COUNTRY
 
 class COMPETITION(models.Model):
+    competition_id = models.CharField(primary_key=True)
     CONFEDERATION = [
         ("EU", "europa")
     ]

@@ -2,6 +2,7 @@ from django.db import models
 from models import COMPETITION, HOME_CLUB, AWAY_CLUB
 
 class GAMES(models.Model):
+    game_id = models.UUIDField(PrimaryKey=True)
     season = models.IntegerField()
     round = models.CharField()
     date = models.DateField()
