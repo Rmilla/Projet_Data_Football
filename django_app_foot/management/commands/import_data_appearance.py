@@ -11,7 +11,7 @@ class Command(BaseCommand):
         # Charger le fichier CSV avec pandas
         data = pd.read_csv('django_app_foot/management/archive/appearances.csv')
 
-        # Créer une liste pour stocker les instances à créer
+        
         instances_to_create = []
 
         # Iterer sur les lignes du dataframe et ajouter les instances à la liste

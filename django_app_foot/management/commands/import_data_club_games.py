@@ -11,6 +11,7 @@ class Command(BaseCommand):
         # Charger le fichier CSV avec pandas
         data = pd.read_csv('django_app_foot/management/archive/club_games.csv')
 
+        instances_to_create = []
         # Iterer sur les lignes du dataframe et enregistrer dans la base de données
         for index, row in tqdm(data.iterrows(), desc='Importation des données', total=len(data)):
             mon_modele_instance = Club_games(
@@ -28,6 +29,6 @@ class Command(BaseCommand):
                
                 # ... assignez d'autres champs comme requis
             )
-            mon_modele_instance.save()
+        Club_games.objects.bulk_create(instances_to_create)
 
         self.stdout.write(self.style.SUCCESS('Données importées avec succès.'))
