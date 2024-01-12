@@ -165,3 +165,4 @@ cython_debug/
 
 # CSV à ne pas versionner
 django_app_foot/management/csv
+
