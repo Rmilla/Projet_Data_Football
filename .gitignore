@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 
 archive
+django_app_foot/management/csv

@@ -6,16 +6,17 @@ class Club(models.Model):
     club_id = models.IntegerField(primary_key=True)
     club_code = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
-    #domestic_competition = models.CharField(max_length=255) #foreignKey 
     squad_size = models.IntegerField() 
-    average_age = models.FloatField() 
-    foreigner_percentage = models.FloatField()
-    national_teams_players = models.IntegerField() 
+    average_age = models.CharField(max_length=255) 
     stadium_name = models.CharField(max_length=255)
     stadium_seats= models.IntegerField()
-    net_transfer_record= models.IntegerField()
+    net_transfer_record= models.CharField(max_length=255)
     last_season= models.IntegerField()
     url= models.CharField(max_length=255)
+    foreigners_number = models.IntegerField()
+    foreigners_percentage = models.CharField(max_length=255)
+    national_team_players = models.IntegerField()
+    coach_name = models.CharField(max_length=255)
     
     def __str__(self):
         return f'{self.name}'

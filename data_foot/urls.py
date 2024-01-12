@@ -16,9 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django_app_foot.views import clubviews 
+from django_app_foot.views import club
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('import_data/', clubviews.import_data, name='import_data'),
 ]
