@@ -1,6 +1,6 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
-from django_app_foot.models import Club_games
+from django_app_foot.models import ClubGames
 from tqdm import tqdm
 
 
@@ -14,7 +14,7 @@ class Command(BaseCommand):
         instances_to_create = []
         # Iterer sur les lignes du dataframe et enregistrer dans la base de données
         for index, row in tqdm(data.iterrows(), desc='Importation des données', total=len(data)):
-            mon_modele_instance = Club_games(
+            mon_modele_instance = ClubGames(
                 game_id=row['game_id'],
                 club_id=row['club_id'],
                 own_goals=row['own_goals'],
@@ -29,6 +29,6 @@ class Command(BaseCommand):
                
                 # ... assignez d'autres champs comme requis
             )
-        Club_games.objects.bulk_create(instances_to_create)
+        ClubGames.objects.bulk_create(instances_to_create)
 
         self.stdout.write(self.style.SUCCESS('Données importées avec succès.'))
