@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.urls import path
 from django_app_foot.views import club
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+   
 ]

@@ -1,3 +1,4 @@
+csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -124,6 +125,7 @@ celerybeat.pid
 # Environments
 .env
 .venv
+venv_foot
 env/
 venv/
 ENV/
@@ -161,5 +163,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-archive
+# CSV à ne pas versionner
 django_app_foot/management/csv
+
+
