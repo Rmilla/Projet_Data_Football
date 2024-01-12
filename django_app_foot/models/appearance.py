@@ -2,8 +2,8 @@ from django.db import models
 
 class Appearance(models.Model): 
     appearance_id = models.CharField(primary_key=True)
-    game_id = models.ForeignKey('Game_id', on_delete=models.CASCADE, related_name='games')
-    player_id = models.ForeignKey('Player_id', on_delete=models.CASCADE, related_name='players')
+    game_id = models.ForeignKey('Game', on_delete=models.CASCADE, related_name='games')
+    player_id = models.ForeignKey('Player', on_delete=models.CASCADE, related_name='players')
     player_club_id = models.IntegerField()
     player_current_club_id = models.IntegerField()
     date = models.DateField()

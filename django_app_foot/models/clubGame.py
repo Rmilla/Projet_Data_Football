@@ -1,6 +1,6 @@
 from django.db import models
 
-class ClubGames(models.Model):
+class ClubGame(models.Model):
     game_id = models.ForeignKey('Game', on_delete=models.CASCADE, related_name='games')
     club_id = models.ForeignKey('Club', on_delete=models.CASCADE, related_name='clubs')
     own_goals = models.IntegerField()
