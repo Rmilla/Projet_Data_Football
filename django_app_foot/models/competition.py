@@ -1,7 +1,6 @@
 from django.db import models
-from models import COUNTRY
 
-class COMPETITION(models.Model):
+class Competition(models.Model):
     competition_id = models.CharField(primary_key=True)
     CONFEDERATION = [
         ("EU", "europa")
@@ -14,4 +13,4 @@ class COMPETITION(models.Model):
     domestic_league_code = models.CharField()
     confederation = models.CharField(choices=CONFEDERATION)
     url = models.URLField()
-    country_id = models.ForeignKey(COUNTRY, on_delete=models.CASCADE, related_name='competition')
+    country_id = models.IntegerField()

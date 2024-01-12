@@ -1,2 +1,2 @@
-from .competitions import COMPETITION
-from .games import GAMES
+from .competition import Competition
+from .game import Game
