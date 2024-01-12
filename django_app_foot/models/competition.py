@@ -5,7 +5,7 @@ class Competition(models.Model):
     CONFEDERATION = [
         ("EU", "europa")
     ]
-    competition_code = models.CharField(max_length=5)
+    competition_code = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     sub_type = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
