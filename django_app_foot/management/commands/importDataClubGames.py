@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
-        data = pd.read_csv('django_app_foot/management/archive/club_games.csv')
+        data = pd.read_csv('django_app_foot/management/csv/club_games.csv')
 
         instances_to_create = []
         # Iterer sur les lignes du dataframe et enregistrer dans la base de données
@@ -24,9 +24,7 @@ class Command(BaseCommand):
                 opponent_goals=row['opponent_goals'],
                 opponent_position=row['opponent_position'],
                 opponent_manager_name=row['opponent_manager_name'],
-                hosting=row['hosting'],
-  
-               
+                hosting=row['hosting'],              
                 # ... assignez d'autres champs comme requis
             )
         ClubGames.objects.bulk_create(instances_to_create)

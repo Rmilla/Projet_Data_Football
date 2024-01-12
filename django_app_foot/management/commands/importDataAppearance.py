@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
-        data = pd.read_csv('django_app_foot/management/archive/appearances.csv')
+        data = pd.read_csv('django_app_foot/management/csv/appearances.csv')
 
         
         instances_to_create = []
