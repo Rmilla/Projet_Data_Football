@@ -3,7 +3,7 @@ from django.db import models
 
 class PlayersValuation(models.Model):
     
-    player_id = models.ForeignKey('Player', on_delete=models.CASCADE, related_name='players')
+    player_id = models.ForeignKey('Player', on_delete=models.CASCADE, related_name='playerValuations')
     date = models.DateField()
     datetime = models.DateTimeField()
     dateweek = models.DateField()

@@ -1,9 +1,9 @@
 from django.db import models
 
 class Game(models.Model):
-    game_id = models.IntegerField(PrimaryKey=True)
+    game_id = models.IntegerField(primary_key=True)
     season = models.IntegerField()
-    round = models.CharField()
+    round = models.CharField(max_length=100)
     date = models.DateField()
     home_club_goals = models.IntegerField()
     away_club_goals = models.IntegerField()
