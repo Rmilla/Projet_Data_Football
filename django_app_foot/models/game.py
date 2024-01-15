@@ -1,7 +1,7 @@
 from django.db import models
 
 class Game(models.Model):
-    game_id = models.IntegerField(PrimaryKey=True)
+    game_id = models.IntegerField(primary_key=True)
     season = models.IntegerField()
     round = models.CharField()
     date = models.DateField()
