@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
-        data = pd.read_csv('django_app_foot\management\csv\player_valuations.csv')
+        data = pd.read_csv('django_app_foot/management/csv/player_valuations.csv')
         
         instances_to_create = []
         # Iterer sur les lignes du dataframe et enregistrer dans la base de données
@@ -17,8 +17,8 @@ class Command(BaseCommand):
                 date=row['date'],
                 datetime=row['datetime'],
                 dateweek=row['dateweek'],
-                market_value_in_eur=row['countrmarket_value_in_eury_id'],
-                current_clubs_id=row['current_clubs_id'],
+                market_value_in_eur=row['market_value_in_eur'],
+                current_clubs_id=row['current_club_id'],
                 player_club_domestic_competition_id=row['player_club_domestic_competition_id'],
                 # ... assignez d'autres champs comme requis
     

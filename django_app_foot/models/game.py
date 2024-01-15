@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Game(models.Model):
     game_id = models.IntegerField(primary_key=True)
     season = models.IntegerField()
@@ -8,6 +9,7 @@ class Game(models.Model):
     home_club_goals = models.IntegerField()
     away_club_goals = models.IntegerField()
     home_club_position = models.IntegerField()
-    competition_id = models.ForeignKey("Competition", on_delete=models.CASCADE, related_name='competitions')
-    home_club_id = models.ForeignKey("Club", on_delete=models.CASCADE, related_name='homeClubs')
-    away_club_id = models.ForeignKey("Club", on_delete=models.CASCADE, related_name='awayClubs')
+    competition = models.ForeignKey(
+        "Competition", on_delete=models.CASCADE, related_name='games')
+    home_club_id = models.IntegerField()
+    away_club_id = models.IntegerField()

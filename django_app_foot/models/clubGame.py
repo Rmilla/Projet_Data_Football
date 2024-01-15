@@ -1,18 +1,20 @@
 from django.db import models
 
+
 class ClubGame(models.Model):
-    game_id = models.ForeignKey('Game', on_delete=models.CASCADE, related_name='clubGames')
-    club_id = models.ForeignKey('Club', on_delete=models.CASCADE, related_name='clubGames')
+    game = models.ForeignKey(
+        'Game', on_delete=models.CASCADE, related_name='clubGames')
+    club = models.ForeignKey(
+        'Club', on_delete=models.CASCADE, related_name='clubGames')
     own_goals = models.IntegerField()
     own_position = models.FloatField(null=True, blank=True)
     own_manager_name = models.CharField(max_length=100)
-    opponent_id = models.ForeignKey('Club', on_delete=models.CASCADE, related_name='opponent_club')
+    opponent_id = models.ForeignKey(
+        'Club', on_delete=models.CASCADE, related_name='opponent_club')
     opponent_goals = models.IntegerField()
     opponent_position = models.FloatField(null=True, blank=True)
     opponent_manager_name = models.CharField(max_length=100)
     hosting = models.CharField(max_length=100)
 
-    def __str__(self) :
-        return f'{self.game_id}'
-
-    
+    def __str__(self):
+        return f'{self.game}'
