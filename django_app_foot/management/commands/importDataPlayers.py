@@ -4,11 +4,12 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django_app_foot.models import player
 
+
 class Command(BaseCommand):
     help = 'Import player data from CSV file'
 
     def handle(self, *args, **options):
-        with open('django_app_foot/management/csv/players.csv', 'r') as csvfile:
+        with open('django_app_foot/management/csv/players.csv', 'r', encoding="utf8") as csvfile:
             reader = csv.DictReader(csvfile)
             players = []
             for row in tqdm(reader, desc="Importing player data", unit=" rows"):
@@ -42,4 +43,5 @@ class Command(BaseCommand):
         with transaction.atomic():
             player.Player.objects.bulk_create(players)
 
-        self.stdout.write(self.style.SUCCESS('Player data imported successfully.'))
+        self.stdout.write(self.style.SUCCESS(
+            'Player data imported successfully.'))

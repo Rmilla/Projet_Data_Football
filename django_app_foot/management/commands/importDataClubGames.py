@@ -9,7 +9,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
-        data = pd.read_csv('django_app_foot/management/csv/club_games.csv')
+        data = pd.read_csv(
+            'django_app_foot/management/csv/club_games.csv', encoding="utf8")
 
         instances_to_create = []
         # Iterer sur les lignes du dataframe et enregistrer dans la base de données
@@ -28,6 +29,8 @@ class Command(BaseCommand):
                     hosting=row['hosting'],
                     # ... assignez d'autres champs comme requis
                 )
+                instances_to_create.append(mon_modele_instance)
+
         ClubGame.objects.bulk_create(instances_to_create)
 
         self.stdout.write(self.style.SUCCESS('Données importées avec succès.'))

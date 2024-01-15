@@ -9,8 +9,7 @@ class ClubGame(models.Model):
     own_goals = models.IntegerField()
     own_position = models.FloatField(null=True, blank=True)
     own_manager_name = models.CharField(max_length=100)
-    opponent = models.ForeignKey(
-        'Club', on_delete=models.CASCADE, related_name='opponent_club')
+    opponent_id = models.IntegerField()
     opponent_goals = models.IntegerField()
     opponent_position = models.FloatField(null=True, blank=True)
     opponent_manager_name = models.CharField(max_length=100)

@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
-        data = pd.read_csv('django_app_foot/management/csv/appearances.csv')
+        data = pd.read_csv('django_app_foot/management/csv/appearances.csv', encoding="utf8")
 
         instances_to_create = []
         missing_player_ids_count = 0

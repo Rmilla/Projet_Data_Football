@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Import data from CSV file'
 
     def handle(self, *args, **options):
-        with open('django_app_foot/management/csv/clubs.csv', 'r') as csvfile:
+        with open('django_app_foot/management/csv/clubs.csv', 'r', encoding="utf8") as csvfile:
             reader = csv.DictReader(csvfile)
             clubs = []
             for row in tqdm(reader, desc="Importing data", unit=" rows"):

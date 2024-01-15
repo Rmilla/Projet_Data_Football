@@ -9,7 +9,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
-        data = pd.read_csv('django_app_foot/management/csv/games.csv')
+        data = pd.read_csv(
+            'django_app_foot/management/csv/games.csv', encoding="utf8")
         print(data.isnull().sum())
         # data.to_numeric()
         data.fillna(0, inplace=True)
