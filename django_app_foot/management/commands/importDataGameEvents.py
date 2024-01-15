@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
-        data = pd.read_csv('django_app_foot\management\csv\game_events.csv')
+        data = pd.read_csv('django_app_foot\management\csv\game_events.csv', encoding="utf8")
         
         instances_to_create = []
         # Iterer sur les lignes du dataframe et enregistrer dans la base de données

@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
-        data = pd.read_csv('django_app_foot/management/csv/games.csv')
+        data = pd.read_csv('django_app_foot/management/csv/games.csv', encoding="utf8")
 
         
         instances_to_create = []
@@ -25,8 +25,9 @@ class Command(BaseCommand):
                 away_club_goals = row['away_club_goals'],
                 home_club_position = row['home_club_position'],
                 competition_id = row['competition_id'],
-                home_club_id = row['home_club_id'],
-                away_club_id = row['away_club_id']
+                # passer une instance concrété déja en base de données
+                home_club_id= row['home_club_id'],
+                away_club_id= row['away_club_id']
                 )
             instances_to_create.append(mon_modele_instance)
 
@@ -34,3 +35,5 @@ class Command(BaseCommand):
         Game.objects.bulk_create(instances_to_create)
 
         self.stdout.write(self.style.SUCCESS('Données importées avec succès.'))
+        
+        # get or create

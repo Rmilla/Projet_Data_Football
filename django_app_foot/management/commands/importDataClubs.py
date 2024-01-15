@@ -2,17 +2,17 @@ import csv
 from tqdm import tqdm
 from django.db import transaction
 from django.core.management.base import BaseCommand, CommandError
-from django_app_foot.models import club
+from django_app_foot.models import Club
 
 class Command(BaseCommand):
     help = 'Import data from CSV file'
 
     def handle(self, *args, **options):
-        with open('django_app_foot/management/csv/clubs.csv', 'r') as csvfile:
+        with open('django_app_foot/management/csv/clubs.csv', 'r', encoding="utf8") as csvfile:
             reader = csv.DictReader(csvfile)
             clubs = []
             for row in tqdm(reader, desc="Importing data", unit=" rows"):
-                club_instance = club.Club(
+                club_instance = Club(
                     club_id=row['club_id'],
                     club_code=row['club_code'],
                     name=row['name'],
@@ -30,7 +30,7 @@ class Command(BaseCommand):
                 )
                 clubs.append(club_instance)
 
-        with transaction.atomic():
-            club.Club.objects.bulk_create(clubs)
+
+        Club.objects.bulk_create(clubs)
 
         self.stdout.write(self.style.SUCCESS('Data imported successfully.'))
