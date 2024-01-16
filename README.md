@@ -1,34 +1,34 @@
 # Projet_Data_Football
 
 ## Ordre import data 
-    1. Competitions : 
+1. Competitions : 
 
-     python manage.py importDataCompetitions
+    python manage.py importDataCompetitions
     
-    2. Clubs 
+2. Clubs :
 
-        python manage.py importDataClubs
+    python manage.py importDataClubs
     
-    3. Players
+3. Players :
 
-        python manage.py importDataPlayers
+    python manage.py importDataPlayers
 
-    4. Games 
+4. Games :
 
-         python manage.py importDataPlayers
+    python manage.py importDataPlayers
 
-    5. ClubGames 
+5. ClubGames :
 
-        python manage.py importDataClubGames
+    python manage.py importDataClubGames
 
-    6. GameEvents
+6. GameEvents :
 
-        python manage.py importGameEvents
+    python manage.py importGameEvents
 
-    7. Appearances
+7. Appearances :
 
-        python manage.py importDataAppearances
+    python manage.py importDataAppearances
 
-    8. PlayersValuations 
+8. PlayersValuations :
 
-        python manage.py importDataPlayersValuations
+    python manage.py importDataPlayersValuations
