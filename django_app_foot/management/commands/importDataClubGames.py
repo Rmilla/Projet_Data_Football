@@ -1,6 +1,8 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
+
 from django_app_foot.models import ClubGame, Club
+
 from tqdm import tqdm
 
 
@@ -9,12 +11,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
+
         data = pd.read_csv(
             'django_app_foot/management/csv/club_games.csv', encoding="utf8")
+
 
         instances_to_create = []
         # Iterer sur les lignes du dataframe et enregistrer dans la base de données
         for index, row in tqdm(data.iterrows(), desc='Importation des données', total=len(data)):
+
             if Club.objects.filter(club_id=row['club_id']).exists():
                 mon_modele_instance = ClubGame(
                     game_id=row['game_id'],
@@ -30,6 +35,7 @@ class Command(BaseCommand):
                     # ... assignez d'autres champs comme requis
                 )
                 instances_to_create.append(mon_modele_instance)
+
 
         ClubGame.objects.bulk_create(instances_to_create)
 

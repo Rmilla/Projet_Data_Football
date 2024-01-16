@@ -11,8 +11,10 @@ class Command(BaseCommand):
     help = 'Import data from CSV files'
 
     def handle(self, *args, **options):
+
         data = pd.read_csv(
             'django_app_foot/management/csv/player_valuations.csv', encoding="utf8")
+
 
         instances_to_create = []
         for index, row in tqdm(data.iterrows(), desc='Importation des données', total=len(data)):
