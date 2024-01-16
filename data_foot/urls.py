@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django_app_foot.views import club
-from django_app_foot.views import AppearancesViewSet
+from django_app_foot.views import AppearancesViewSet, ClubGameViewSet
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('appearance/', AppearancesViewSet.as_view({'get': 'list'}))
+    path('appearance/', AppearancesViewSet.as_view({'get': 'list'})),
+    path('club_game/', ClubGameViewSet.as_view({'get': 'list'}))
 
 ]
