@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django_app_foot.views import club
-
+from django_app_foot.views import AppearancesViewSet
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-   
+    path('appearance/', AppearancesViewSet.as_view({'get': 'list'}))
+
 ]
