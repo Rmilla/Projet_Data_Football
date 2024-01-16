@@ -1,2 +1,4 @@
-from .appearancesViews import AppearancesViewSet
-from .clubGameViews import ClubGameViewSet
+from .appearance import AppearancesViewSet
+from .clubGame import ClubGameViewSet
+from .gameEvent import GameEventViewSet
+from .playerValuation import PlayersValuationViewSet
