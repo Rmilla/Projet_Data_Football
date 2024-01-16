@@ -1,9 +1,12 @@
 from django.db import models
 
-class Appearance(models.Model): 
-    appearance_id = models.CharField(primary_key=True,max_length=100)
-    game_id = models.ForeignKey('Game', on_delete=models.CASCADE, related_name='appearences')
-    player_id = models.ForeignKey('Player', on_delete=models.CASCADE, related_name='appearances')
+
+class Appearance(models.Model):
+    appearance_id = models.CharField(primary_key=True, max_length=100)
+    game = models.ForeignKey(
+        'Game', on_delete=models.CASCADE, related_name='appearences')
+    player = models.ForeignKey(
+        'Player', on_delete=models.CASCADE, related_name='appearances', null=True)
     player_club_id = models.IntegerField()
     player_current_club_id = models.IntegerField()
     date = models.DateField()

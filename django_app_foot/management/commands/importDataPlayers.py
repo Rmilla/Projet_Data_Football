@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 from django_app_foot.models import Player
 
+
 class Command(BaseCommand):
     help = 'Import player data from CSV file'
 
@@ -42,4 +43,5 @@ class Command(BaseCommand):
         with transaction.atomic():
             Player.objects.bulk_create(players)
 
-        self.stdout.write(self.style.SUCCESS('Player data imported successfully.'))
+        self.stdout.write(self.style.SUCCESS(
+            'Player data imported successfully.'))
