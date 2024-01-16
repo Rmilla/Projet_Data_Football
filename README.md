@@ -1,9 +1,9 @@
 # Projet_Data_Football
 
 ## Ordre import data 
-    **1. Competitions**
+    1. Competitions : 
 
-        python manage.py importDataCompetitions
+     python manage.py importDataCompetitions
     
     2. Clubs 
 
