@@ -2,6 +2,7 @@ from rest_framework import serializers, viewsets, permissions, status
 from django_app_foot.models import Competition
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
+from ..pagination import MyPaginationClass
 
 class CompetitionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,6 +27,6 @@ class CompetitionViewSet(viewsets.ModelViewSet):
     queryset = Competition.objects.all()
     serializer_class = CompetitionSerializer
     permission_classes = [permissions.IsAuthenticated]
-    #pagination_class = MyPaginationClass
+    pagination_class = MyPaginationClass
     filter_backends = [DjangoFilterBackend]
     filterset_class = CompetitionFilter

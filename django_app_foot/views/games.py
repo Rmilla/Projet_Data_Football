@@ -2,6 +2,7 @@ from rest_framework import serializers, viewsets, permissions, status
 from django_app_foot.models import Game
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
+from ..pagination import MyPaginationClass
 
 class GameSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,3 +27,4 @@ class GameViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_class = GameFilter
+    pagination_class = MyPaginationClass

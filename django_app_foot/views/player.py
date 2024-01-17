@@ -52,6 +52,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_class = PlayerFilters
+    pagination_class = MyPaginationClass
 
     def list(self, request, *args, **kwargs):
         try:
