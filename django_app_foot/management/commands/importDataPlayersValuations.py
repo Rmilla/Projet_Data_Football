@@ -1,8 +1,9 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
-from django_app_foot.models import PlayersValuation
+from django_app_foot.models import PlayersValuation, Club
 from tqdm import tqdm
 from datetime import datetime
+
 
 import pytz
 
@@ -15,6 +16,7 @@ class Command(BaseCommand):
         data = pd.read_csv(
             'django_app_foot/management/csv/player_valuations.csv', encoding="utf8")
 
+        data = data.dropna(subset=['current_club_id'])
 
         instances_to_create = []
         for index, row in tqdm(data.iterrows(), desc='Importation des données', total=len(data)):
@@ -34,5 +36,4 @@ class Command(BaseCommand):
             )
             instances_to_create.append(mon_modele_instance)
         PlayersValuation.objects.bulk_create(instances_to_create)
-
         self.stdout.write(self.style.SUCCESS('Données importées avec succès.'))
