@@ -9,5 +9,5 @@ class PlayersValuation(models.Model):
     datetime = models.DateTimeField()
     dateweek = models.DateField()
     market_value_in_eur = models.IntegerField()
-    current_clubs_id = models.IntegerField()
+    current_clubs_id = models.IntegerField(null=True, blank=True)
     player_club_domestic_competition_id = models.CharField(max_length=100)
