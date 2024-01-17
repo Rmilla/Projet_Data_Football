@@ -14,3 +14,6 @@ class GameEvent(models.Model):
     description = models.CharField(max_length=100)
     player_in_id = models.IntegerField()
     player_assist_id = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.game}'

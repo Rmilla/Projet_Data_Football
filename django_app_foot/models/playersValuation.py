@@ -11,3 +11,6 @@ class PlayersValuation(models.Model):
     market_value_in_eur = models.IntegerField()
     current_clubs_id = models.IntegerField(null=True, blank=True)
     player_club_domestic_competition_id = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.player}'

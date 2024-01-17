@@ -14,3 +14,5 @@ class Game(models.Model):
     home_club_id = models.IntegerField()
     away_club_id = models.IntegerField()
 
+    def __str__(self):
+        return f'{self.season}'

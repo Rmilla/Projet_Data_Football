@@ -14,3 +14,6 @@ class Competition(models.Model):
     confederation = models.CharField(choices=CONFEDERATION,max_length=100)
     url = models.URLField()
     country_id = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.name}'

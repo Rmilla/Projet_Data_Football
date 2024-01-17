@@ -17,3 +17,6 @@ class Appearance(models.Model):
     goals = models.IntegerField(default=0)
     assists = models.IntegerField(default=0)
     minutes_played = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.appearance_id}'
