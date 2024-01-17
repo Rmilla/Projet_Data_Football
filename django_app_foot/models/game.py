@@ -13,3 +13,4 @@ class Game(models.Model):
         "Competition", on_delete=models.CASCADE, related_name='games')
     home_club_id = models.IntegerField()
     away_club_id = models.IntegerField()
+

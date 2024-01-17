@@ -7,3 +7,4 @@ from .clubGame import ClubGame
 from .gameEvent import GameEvent
 from .playersValuation import PlayersValuation
 from .player import Player
+

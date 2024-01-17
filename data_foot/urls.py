@@ -16,14 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django_app_foot.views import club
-from django_app_foot.views import AppearancesViewSet, ClubGameViewSet, GameViewSet, CompetitionViewSet
+
+from django_app_foot.views import AppearancesViewSet, ClubGameViewSet, GameEventViewSet,PlayersValuationViewSet,Club
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('appearance/', AppearancesViewSet.as_view({'get': 'list'})),
     path('club_game/', ClubGameViewSet.as_view({'get': 'list'})),
+
     path('competition/', CompetitionViewSet.as_view({'get': 'list'})),
-    path('game/', GameViewSet.as_view({'get': 'list'})),
+
+
+    path('player_valuation/', PlayersValuationViewSet.as_view({'get': 'list'})),
+    path('game_event/', GameEventViewSet.as_view({'get': 'list'}))
+
 ]

@@ -10,10 +10,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas
+
         data = pd.read_csv(
             'django_app_foot/management/csv/game_events.csv', encoding="utf8")
         print(data.isnull().sum())
         data.fillna(0, inplace=True)
+
         instances_to_create = []
 
         missing_player_ids_count = 0

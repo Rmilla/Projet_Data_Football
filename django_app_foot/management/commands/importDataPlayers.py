@@ -2,7 +2,7 @@ import csv
 from tqdm import tqdm
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
-from django_app_foot.models import player
+from django_app_foot.models import Player
 
 
 class Command(BaseCommand):
@@ -14,7 +14,7 @@ class Command(BaseCommand):
             players = []
             for row in tqdm(reader, desc="Importing player data", unit=" rows"):
 
-                player_instance = player.Player(
+                player_instance = Player(
                     player_id=row['player_id'],
                     first_name=row['first_name'],
                     last_name=row['last_name'],
@@ -41,7 +41,7 @@ class Command(BaseCommand):
                 players.append(player_instance)
 
         with transaction.atomic():
-            player.Player.objects.bulk_create(players)
+            Player.objects.bulk_create(players)
 
         self.stdout.write(self.style.SUCCESS(
             'Player data imported successfully.'))
