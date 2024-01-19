@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  db_projet_data_football:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      #- ./dockerdata/postgres:/var/lib/postgresql/data => Si vous voulez gérer le volume dans votre dossier de projet
+    env_file: .env
+    ports:
+      - "5434:5432"
+    healthcheck:
+      # Permet de valider le bon fonctionnement du container
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+  projet_data_football:
+    build:
+      context: . # Ici on ne déclare pas d'image mais un build
+      dockerfile: ./Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    #command: gunicorn --reload django_lesson_project.wsgi --bind 0.0.0.0
+    volumes:
+      - .:/code
+    env_file: .env
+    ports:
+      - "8001:8000" # Le premier port est celui disponible sur votre PC # Le second est celui utilisé par docker dans son réseau
+    depends_on:
+      db_projet_data_football:
+        condition: service_healthy
+      # Ne se lancera pas tant que la DB n'est pas correctement lancée :)
+volumes:
+  postgres_data:
