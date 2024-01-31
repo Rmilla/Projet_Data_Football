@@ -30,7 +30,7 @@ class PlayersValuationFilters(filters.FilterSet):
 class PlayersValuationViewSet(viewsets.ModelViewSet):
     queryset = PlayersValuation.objects.all()
     serializer_class = PlayersValuationSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     pagination_class = MyPaginationClass
     filterset_class = PlayersValuationFilters

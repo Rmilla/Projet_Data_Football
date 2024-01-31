@@ -42,7 +42,7 @@ class ClubGameViewSet(viewsets.ModelViewSet):
 
     queryset = ClubGame.objects.all()
     serializer_class = ClubGameSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     pagination_class = MyPaginationClass
     filterset_class = ClubGameFilters

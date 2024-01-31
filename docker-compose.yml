@@ -10,7 +10,7 @@ services:
       - "5434:5432"
     healthcheck:
       # Permet de valider le bon fonctionnement du container
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      test: ["CMD-SHELL", "pg_isready -U $DB_USER -d $DB_NAME"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -19,6 +19,7 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - PGDATA=/var/lib/postgresql/data/pgdata
+      
   projet_data_football:
     build:
       context: . # Ici on ne déclare pas d'image mais un build

@@ -30,7 +30,7 @@ class GameEventFilters(filters.FilterSet):
 class GameEventViewSet(viewsets.ModelViewSet):
     queryset = GameEvent.objects.all()
     serializer_class = GameEventSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     pagination_class = MyPaginationClass
     filterset_class = GameEventFilters

@@ -21,12 +21,10 @@ class CompetitionFilter(filters.FilterSet):
             "confederation": ['icontains', 'contains'],
         }
 class CompetitionViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows animals to be viewed or edited.
-    """
+  
     queryset = Competition.objects.all()
     serializer_class = CompetitionSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     pagination_class = MyPaginationClass
     filter_backends = [DjangoFilterBackend]
     filterset_class = CompetitionFilter

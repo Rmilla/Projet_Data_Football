@@ -1,6 +1,6 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
-from django_app_foot.models import PlayersValuation, Club
+from django_app_foot.models import PlayersValuation
 from tqdm import tqdm
 from datetime import datetime
 
@@ -17,7 +17,6 @@ class Command(BaseCommand):
             'django_app_foot/management/csv/player_valuations.csv', encoding="utf8")
 
         data = data.dropna(subset=['current_club_id'])
-
         instances_to_create = []
         for index, row in tqdm(data.iterrows(), desc='Importation des données', total=len(data)):
             naive_datetime_str = row['datetime']
@@ -32,8 +31,9 @@ class Command(BaseCommand):
                 market_value_in_eur=row['market_value_in_eur'],
                 current_clubs_id=row['current_club_id'],
                 player_club_domestic_competition_id=row['player_club_domestic_competition_id'],
-                # ... other fields
+    
             )
             instances_to_create.append(mon_modele_instance)
         PlayersValuation.objects.bulk_create(instances_to_create)
+
         self.stdout.write(self.style.SUCCESS('Données importées avec succès.'))

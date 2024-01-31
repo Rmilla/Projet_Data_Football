@@ -28,7 +28,7 @@ class AppearancesFilters(filters.FilterSet):
 class AppearancesViewSet(viewsets.ModelViewSet):
     queryset = Appearance.objects.all()
     serializer_class = AppearancesSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     pagination_class = MyPaginationClass
     filterset_class = AppearancesFilters
