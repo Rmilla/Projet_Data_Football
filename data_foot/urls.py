@@ -25,11 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('appearances/', AppearancesViewSet .as_view({'get': 'list'})),
     path('club_games/', ClubGameViewSet.as_view({'get': 'list'})),
-
     path('competitions/', CompetitionViewSet.as_view({'get': 'list'})),
     path('games/', GameViewSet.as_view({'get': 'list'})),
-
-
     path('player_valuations/', PlayersValuationViewSet.as_view({'get': 'list'})),
     path('game_events/', GameEventViewSet.as_view({'get': 'list'})),
     path('clubs/', ClubViewSet.as_view({'get': 'list'})),

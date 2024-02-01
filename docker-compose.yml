@@ -1,13 +1,13 @@
 version: "3.8"
 services:
   db_projet_data_football:
-    image: postgres:latest
+    image: postgres:16
     volumes:
       - postgres_data:/var/lib/postgresql/data
       #- ./dockerdata/postgres:/var/lib/postgresql/data => Si vous voulez gérer le volume dans votre dossier de projet
     env_file: .env
     ports:
-      - "5434:5432"
+      - "5432:5432"
     healthcheck:
       # Permet de valider le bon fonctionnement du container
       test: ["CMD-SHELL", "pg_isready -U $DB_USER -d $DB_NAME"]
@@ -29,6 +29,7 @@ services:
     volumes:
       - .:/code
     env_file: .env
+    
     ports:
       - "8001:8000" # Le premier port est celui disponible sur votre PC # Le second est celui utilisé par docker dans son réseau
     depends_on:

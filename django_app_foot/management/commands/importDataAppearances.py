@@ -1,5 +1,6 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
+from django.db import transaction, connections
 from django_app_foot.models import Appearance, Player
 from tqdm import tqdm
 
@@ -13,6 +14,11 @@ class Command(BaseCommand):
 
         instances_to_create = []
         missing_player_ids_count = 0
+
+        # Vérifier la connexion à la base de données avant l'opération bulk_create
+        with connections['default'].cursor() as cursor:
+            cursor.execute('SELECT 1')
+
         # Iterer sur les lignes du dataframe et ajouter les instances à la liste
         for index, row in tqdm(data.iterrows(), desc='Importation des données', total=len(data)):
             if Player.objects.filter(player_id=row['player_id']).exists():
@@ -33,12 +39,18 @@ class Command(BaseCommand):
                     # ... assignez d'autres champs comme requis
                 )
                 instances_to_create.append(mon_modele_instance)
-        else:
-            print(
-                f"player_id {row['player_id']} n'existe pas dans la table Player.")
-            missing_player_ids_count += 1
+            else:
+                print(f"player_id {row['player_id']} n'existe pas dans la table Player.")
+                missing_player_ids_count += 1
 
-        Appearance.objects.bulk_create(instances_to_create)
+        # Début de la transaction pour bulk_create
+        with transaction.atomic():
+            Appearance.objects.bulk_create(instances_to_create)
+
+        # Vérifier la connexion à la base de données après l'opération bulk_create
+        with connections['default'].cursor() as cursor:
+            cursor.execute('SELECT 1')
+
         self.stdout.write(self.style.WARNING(
             f'Nombre de player_id manquants : {missing_player_ids_count}'))
         self.stdout.write(self.style.SUCCESS('Données importées avec succès.'))

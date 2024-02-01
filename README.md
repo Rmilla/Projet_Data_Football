@@ -15,7 +15,7 @@
 
 4. Games :
 
-        python manage.py importDataPlayers
+        python manage.py importDataGames
 
 5. ClubGames :
 
@@ -23,7 +23,7 @@
 
 6. GameEvents :
 
-        python manage.py importGameEvents
+        python manage.py importDataGameEvents
 
 7. Appearances :
 
