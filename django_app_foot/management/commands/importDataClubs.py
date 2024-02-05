@@ -2,7 +2,7 @@ import csv
 from tqdm import tqdm
 from django.db import transaction
 from django.core.management.base import BaseCommand, CommandError
-from django_app_foot.models import Club
+from django_app_foot.models import Club, Competition
 
 class Command(BaseCommand):
     help = 'Import data from CSV file'
@@ -11,10 +11,14 @@ class Command(BaseCommand):
         with open('django_app_foot/management/csv/clubs.csv', 'r', encoding="utf8") as csvfile:
             reader = csv.DictReader(csvfile)
             clubs = []
+            
             for row in tqdm(reader, desc="Importing data", unit=" rows"):
+                competition_instance, created = Competition.objects.get_or_create(competition_id=row['domestic_competition_id'])
+
                 club_instance = Club(
                     club_id=row['club_id'],
                     club_code=row['club_code'],
+                    competition=competition_instance,
                     name=row['name'],
                     squad_size=row['squad_size'],
                     average_age=row['average_age'],

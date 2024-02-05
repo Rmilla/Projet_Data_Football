@@ -5,6 +5,8 @@ class Club(models.Model):
     
     club_id = models.IntegerField(primary_key=True)
     club_code = models.CharField(max_length=255)
+    competition= models.ForeignKey(
+        "Competition", on_delete=models.CASCADE, related_name='clubs', default=1)
     name = models.CharField(max_length=255)
     squad_size = models.IntegerField() 
     average_age = models.CharField(max_length=255) 

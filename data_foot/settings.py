@@ -76,7 +76,10 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:4200',
 ]
 ROOT_URLCONF = 'data_foot.urls'
-
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'django_app_foot.pagination.MyPaginationClass',
+    'PAGE_SIZE': 5,  # Adjust this value as needed
+}
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

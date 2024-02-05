@@ -2,30 +2,41 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import serializers, viewsets, permissions, status
 from django_filters import rest_framework as filters
 from ..models import ClubGame
+from .games import GameSerializer
+
 from ..pagination import MyPaginationClass
 from django.http import JsonResponse
 import json
 
 
 class ClubGameSerializer(serializers.ModelSerializer):
+    game = GameSerializer()
     class Meta:
         model = ClubGame
-        fields = "__all__"
+        fields = ['club','own_goals', 'game' ]
         # Empeche les erreur avec NaN
 
-        def to_representation(self, instance):
+    def to_representation(self, instance):
             data = super().to_representation(instance)
 
             for key, value in data.items():
                 if value != value:
                     data[key] = None
+
+            
             return data
 
 
 class ClubGameFilters(filters.FilterSet):
+    min_date = filters.DateFilter(field_name='game__date', lookup_expr='gte')
+    max_date = filters.DateFilter(field_name='game__date', lookup_expr='lte')
+    season = filters.NumberFilter(field_name = 'game__season')
+
     class Meta:
         model = ClubGame
         fields = {
+            'game__season': ['exact'],
+            'game__date': ['exact', 'gte', 'lte'],
             'game': ['exact'],
             'club': ['exact'],
             'own_goals': ['exact'],
@@ -50,6 +61,7 @@ class ClubGameViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         try:
+
             response = super().list(request, *args, **kwargs)
             return JsonResponse(response.data, safe=False, json_dumps_params={'indent': 2})
         except ValueError as e:

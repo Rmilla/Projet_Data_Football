@@ -34,3 +34,4 @@ class GameEventViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     pagination_class = MyPaginationClass
     filterset_class = GameEventFilters
+    

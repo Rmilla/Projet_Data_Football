@@ -4,10 +4,12 @@ from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
 from ..pagination import MyPaginationClass
 
+
+
 class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
-        fields = "__all__"
+        fields =['date','season']
 class GameFilter(filters.FilterSet):
     class Meta:
         model = Game
@@ -15,7 +17,7 @@ class GameFilter(filters.FilterSet):
             "game_id": ['icontains','exact'],
             "season": ['icontains','exact'],
             "round": ['icontains','exact'],
-            "date": ['icontains','exact'],
+            "date": ['exact'],
             "competition": ['exact'],
         }
 class GameViewSet(viewsets.ModelViewSet):

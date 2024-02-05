@@ -2,15 +2,18 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import serializers, viewsets, permissions, status
 from django_filters import rest_framework as filters
 from ..models import Club, ClubGame
+from .clubGame import ClubGameSerializer
 from ..pagination import MyPaginationClass
 from django.http import JsonResponse
 
 class ClubSerializer(serializers.ModelSerializer):
+    clubGames = ClubGameSerializer(many=True, read_only= True)
+
     class Meta:
         model = Club
-        fields = "__all__"
-
-        def to_representation(self, instance):
+        fields = ['club_id','name','clubGames']
+        
+    def to_representation(self, instance):
             data = super().to_representation(instance)
 
             for key, value in data.items():
@@ -19,6 +22,9 @@ class ClubSerializer(serializers.ModelSerializer):
             return data
 
 class ClubFilters(filters.FilterSet):
+    min_date = filters.DateFilter(field_name='clubGames__game__date', lookup_expr='gte')
+    max_date = filters.DateFilter(field_name='clubGames__game__date', lookup_expr='lte')
+    season = filters.NumberFilter(field_name = 'clubGames__game__season')
     class Meta:
         model = Club
         fields = {
@@ -47,7 +53,10 @@ class ClubViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         try:
+          
             response = super().list(request, *args, **kwargs)
             return JsonResponse(response.data, safe=False, json_dumps_params={'indent': 2})
         except ValueError as e:
             return JsonResponse({"error": str(e)}, status=500)
+        
+    

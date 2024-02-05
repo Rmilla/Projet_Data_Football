@@ -15,10 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from django_app_foot.views import AppearancesViewSet, ClubGameViewSet, GameEventViewSet,PlayersValuationViewSet,CompetitionViewSet,GameViewSet,ClubViewSet,PlayerViewSet
 
+from django_app_foot.views import(  AppearancesViewSet, ClubGameViewSet, GameEventViewSet,PlayersValuationViewSet,CompetitionViewSet,GameViewSet,ClubViewSet,PlayerViewSet,LastGameViewSet)
 
 
 urlpatterns = [
@@ -30,6 +30,7 @@ urlpatterns = [
     path('player_valuations/', PlayersValuationViewSet.as_view({'get': 'list'})),
     path('game_events/', GameEventViewSet.as_view({'get': 'list'})),
     path('clubs/', ClubViewSet.as_view({'get': 'list'})),
-    path('players/', PlayerViewSet.as_view({'get': 'list'}))
+    path('players/', PlayerViewSet.as_view({'get': 'list'})),
+    path('last_game', LastGameViewSet.as_view({'get': 'list'}))
 
 ]
