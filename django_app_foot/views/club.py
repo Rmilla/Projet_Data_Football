@@ -7,11 +7,10 @@ from ..pagination import MyPaginationClass
 from django.http import JsonResponse
 
 class ClubSerializer(serializers.ModelSerializer):
-    clubGames = ClubGameSerializer(many=True, read_only= True)
 
     class Meta:
         model = Club
-        fields = ['club_id','name','clubGames']
+        fields = ['club_id','name','last_season']
         
     def to_representation(self, instance):
             data = super().to_representation(instance)
@@ -22,9 +21,9 @@ class ClubSerializer(serializers.ModelSerializer):
             return data
 
 class ClubFilters(filters.FilterSet):
-    min_date = filters.DateFilter(field_name='clubGames__game__date', lookup_expr='gte')
-    max_date = filters.DateFilter(field_name='clubGames__game__date', lookup_expr='lte')
-    season = filters.NumberFilter(field_name = 'clubGames__game__season')
+    # min_date = filters.DateFilter(field_name='clubGames__game__date', lookup_expr='gte')
+    # max_date = filters.DateFilter(field_name='clubGames__game__date', lookup_expr='lte')
+    # season = filters.NumberFilter(field_name = 'clubGames__game__season')
     class Meta:
         model = Club
         fields = {

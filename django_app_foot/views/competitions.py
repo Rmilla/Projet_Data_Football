@@ -8,6 +8,13 @@ from .games import GameSerializer
 
 class CompetitionSerializer(serializers.ModelSerializer):
     clubs = ClubSerializer(many=True, read_only=True)
+    has_clubs = filters.BooleanFilter(method='filter_has_clubs', label='Has Clubs')
+
+    def filter_has_clubs(self, queryset, name, value):
+        if value:
+            return queryset.filter(clubs__isnull=False).distinct()
+        else:
+            return queryset.filter(clubs__isnull=True)
    
     class Meta: 
 
@@ -32,6 +39,6 @@ class CompetitionViewSet(viewsets.ModelViewSet):
     queryset = Competition.objects.all()
     serializer_class = CompetitionSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    pagination_class = MyPaginationClass
+    # pagination_class = MyPaginationClass
     filter_backends = [DjangoFilterBackend]
     filterset_class = CompetitionFilter 
