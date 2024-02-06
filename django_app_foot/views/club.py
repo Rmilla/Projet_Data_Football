@@ -2,7 +2,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import serializers, viewsets, permissions, status
 from django_filters import rest_framework as filters
 from ..models import Club, ClubGame
-from .clubGame import ClubGameSerializer
 from ..pagination import MyPaginationClass
 from django.http import JsonResponse
 
@@ -49,8 +48,5 @@ class ClubViewSet(viewsets.ModelViewSet):
         except ValueError as e:
             return JsonResponse({"error": str(e)}, status=500)
         
-    #on implente la logique de filtrage directement ici
-    def get_queryset(self):
-        # Filtrez les clubs avec last_season égal à 2023
-        return Club.objects.filter(last_season=2023)
+   
     

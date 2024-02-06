@@ -3,7 +3,7 @@ from rest_framework import serializers, viewsets, permissions, status
 from django_filters import rest_framework as filters
 from ..models import ClubGame
 from .games import GameSerializer
-
+from .club import ClubSerializer
 from ..pagination import MyPaginationClass
 from django.http import JsonResponse
 import json
@@ -11,9 +11,10 @@ import json
 
 class ClubGameSerializer(serializers.ModelSerializer):
     game = GameSerializer()
+    club =ClubSerializer ()
     class Meta:
         model = ClubGame
-        fields = ['club','own_goals', 'game' ]
+        fields = ['club','own_goals', 'is_win', 'game', ]
         # Empeche les erreur avec NaN
 
     def to_representation(self, instance):

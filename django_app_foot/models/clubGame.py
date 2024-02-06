@@ -14,6 +14,7 @@ class ClubGame(models.Model):
     opponent_position = models.FloatField(null=True, blank=True)
     opponent_manager_name = models.CharField(max_length=100)
     hosting = models.CharField(max_length=100)
+    is_win = models.IntegerField()
 
     def __str__(self):
         return f'{self.game}'

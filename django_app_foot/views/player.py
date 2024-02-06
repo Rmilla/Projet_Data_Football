@@ -2,13 +2,15 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import serializers, viewsets, permissions, status
 from django_filters import rest_framework as filters
 from ..models import Player
+from .appearance import AppearancesSerializer
 from ..pagination import MyPaginationClass
 from django.http import JsonResponse
 
 class PlayerSerializer(serializers.ModelSerializer):
+    appearances = AppearancesSerializer(many=True, read_only=True)
     class Meta:
         model = Player
-        fields = "__all__"
+        fields = ['player_id', 'name', 'last_season', 'appearances']
 
         def to_representation(self, instance):
             data = super().to_representation(instance)

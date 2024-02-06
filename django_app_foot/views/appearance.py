@@ -8,20 +8,20 @@ from ..pagination import MyPaginationClass
 class AppearancesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appearance
-        fields = "__all__"
+        fields = ['goals','date']
 
 
 class AppearancesFilters(filters.FilterSet):
     class Meta:
         model = Appearance
         fields = {
-            # 'date': ['exact'],
+            'date': ['exact'],
             'player_name': ['exact', 'icontains', 'contains'],
             'yellow_cards': ['exact'],
             'red_cards': ['exact'],
             'goals': ['exact'],
             'assists': ['exact'],
-            'minutes_played': ['exact']
+            'minutes_played': ['exact'],
         }
 
 
