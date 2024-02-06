@@ -7,24 +7,14 @@ from ..pagination import MyPaginationClass
 from django.http import JsonResponse
 
 class ClubSerializer(serializers.ModelSerializer):
-    clubGames = ClubGameSerializer(many=True, read_only= True)
 
     class Meta:
         model = Club
-        fields = ['club_id','name','clubGames']
+        fields = ['club_id','name','last_season']
         
-    def to_representation(self, instance):
-            data = super().to_representation(instance)
-
-            for key, value in data.items():
-                if value != value:
-                    data[key] = None
-            return data
 
 class ClubFilters(filters.FilterSet):
-    min_date = filters.DateFilter(field_name='clubGames__game__date', lookup_expr='gte')
-    max_date = filters.DateFilter(field_name='clubGames__game__date', lookup_expr='lte')
-    season = filters.NumberFilter(field_name = 'clubGames__game__season')
+
     class Meta:
         model = Club
         fields = {
@@ -45,7 +35,7 @@ class ClubFilters(filters.FilterSet):
         }
 
 class ClubViewSet(viewsets.ModelViewSet):
-    queryset = Club.objects.all()
+
     serializer_class = ClubSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
@@ -59,4 +49,8 @@ class ClubViewSet(viewsets.ModelViewSet):
         except ValueError as e:
             return JsonResponse({"error": str(e)}, status=500)
         
+    #on implente la logique de filtrage directement ici
+    def get_queryset(self):
+        # Filtrez les clubs avec last_season égal à 2023
+        return Club.objects.filter(last_season=2023)
     
