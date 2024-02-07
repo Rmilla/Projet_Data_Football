@@ -3,12 +3,13 @@ from rest_framework import serializers, viewsets, permissions, status
 from django_filters import rest_framework as filters
 from ..models import GameEvent
 from ..pagination import MyPaginationClass
-
+from .games import GameSerializer
 
 class GameEventSerializer(serializers.ModelSerializer):
+    games = GameSerializer(many = True, read_only = True)
     class Meta:
         model = GameEvent
-        fields = "__all__"
+        fields = [ "games"]
 
 
 class GameEventFilters(filters.FilterSet):

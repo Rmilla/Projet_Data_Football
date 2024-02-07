@@ -3,10 +3,12 @@ from django_app_foot.models import Game
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
 from ..pagination import MyPaginationClass
+from .appearance import AppearancesSerializer
 
 
 
 class GameSerializer(serializers.ModelSerializer):
+  
     class Meta:
         model = Game
         fields =['date','season']

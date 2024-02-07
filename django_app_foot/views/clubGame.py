@@ -11,10 +11,10 @@ import json
 
 class ClubGameSerializer(serializers.ModelSerializer):
     game = GameSerializer()
-    club =ClubSerializer ()
+    club = ClubSerializer()
     class Meta:
         model = ClubGame
-        fields = ['club','own_goals', 'is_win', 'game', ]
+        fields = ['club','own_goals', 'is_win', 'game']
         # Empeche les erreur avec NaN
 
     def to_representation(self, instance):

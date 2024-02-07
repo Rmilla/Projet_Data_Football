@@ -20,17 +20,21 @@ from django.urls import path, include
 
 from django_app_foot.views import(  AppearancesViewSet, ClubGameViewSet, GameEventViewSet,PlayersValuationViewSet,CompetitionViewSet,GameViewSet,ClubViewSet,PlayerViewSet,LastGameViewSet)
 
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'appearances', AppearancesViewSet, basename='appearances')
+router.register(r'club_games', ClubGameViewSet, basename='club_game')
+router.register(r'competitions', CompetitionViewSet, basename='competition')
+router.register(r'games', GameViewSet, basename='game')
+router.register(r'player_valuations', PlayersValuationViewSet, basename='player_valuation')
+router.register(r'game_events', GameEventViewSet, basename='game_event')
+router.register(r'clubs', ClubViewSet, basename='club')
+router.register(r'players', PlayerViewSet, basename='player')
+router.register(r'last_game', LastGameViewSet, basename='last_game')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('appearances/', AppearancesViewSet .as_view({'get': 'list'})),
-    path('club_games/', ClubGameViewSet.as_view({'get': 'list'})),
-    path('competitions/', CompetitionViewSet.as_view({'get': 'list'})),
-    path('games/', GameViewSet.as_view({'get': 'list'})),
-    path('player_valuations/', PlayersValuationViewSet.as_view({'get': 'list'})),
-    path('game_events/', GameEventViewSet.as_view({'get': 'list'})),
-    path('clubs/', ClubViewSet.as_view({'get': 'list'})),
-    path('players/', PlayerViewSet.as_view({'get': 'list'})),
-    path('last_game', LastGameViewSet.as_view({'get': 'list'}))
-
-]
+    # Include the router's URLs
+    path('', include(router.urls)),
+]   

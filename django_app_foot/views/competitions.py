@@ -8,7 +8,7 @@ from .games import GameSerializer
 
 class CompetitionSerializer(serializers.ModelSerializer):
     clubs = ClubSerializer(many=True, read_only=True)
-
+    
     class Meta:
         model = Competition
         fields = "__all__"
@@ -31,8 +31,11 @@ class CompetitionFilter(filters.FilterSet):
         return queryset.filter(clubs__last_season=value).distinct()
 
 class CompetitionViewSet(viewsets.ModelViewSet):
-    queryset = Competition.objects.filter(clubs__gt=0)
+    queryset = Competition.objects.filter(clubs__gt=0).distinct()
     serializer_class = CompetitionSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_class = CompetitionFilter
+
+
+    
