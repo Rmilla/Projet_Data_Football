@@ -3,11 +3,16 @@ from django_app_foot.models import Competition, Club
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
 from ..pagination import MyPaginationClass
-from .club import ClubSerializer
+from .club import ClubSerializer, ClubFilters
 from .games import GameSerializer
 
 class CompetitionSerializer(serializers.ModelSerializer):
-    clubs = ClubSerializer(many=True, read_only=True)
+    clubs = serializers.SerializerMethodField()
+
+    def get_clubs(self, obj):
+        request = self.context.get('request')
+        filtered_clubs = ClubFilters(request.GET, queryset=obj.clubs.all()).qs
+        return ClubSerializer(filtered_clubs, many=True).data
 
     class Meta:
         model = Competition
@@ -36,3 +41,8 @@ class CompetitionViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_class = CompetitionFilter
+
+    def get_serializer_context(self):
+        context = super(CompetitionViewSet, self).get_serializer_context()
+        context.update({"request": self.request})
+        return context
