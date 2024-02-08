@@ -86,15 +86,15 @@ Le projet Data Foot est un mini-projet permettant d'afficher diverses statistiqu
 
 ## Contributeurs 
 Nocsyy : 
-1. [github](https://github.com/Nocsyy)
-2. [portefolio](https://nocsyy.github.io/MyPortefolio/)
-3. [LinkedIn](https://www.linkedin.com/in/andy-ozdemir-942265273/)
+- [github](https://github.com/Nocsyy)
+- [portefolio](https://nocsyy.github.io/MyPortefolio/)
+- [LinkedIn](https://www.linkedin.com/in/andy-ozdemir-942265273/)
 
 BChelvi: 
-1. [github](https://github.com/BChelvi)
-2. [portefolio](https://www.featuredevsteam.com/)
-3. [LinkedIn](https://www.linkedin.com/in/benjamin-chelvi-sandin-92a63924b)
+- [github](https://github.com/BChelvi)
+- [portefolio](https://www.featuredevsteam.com/)
+- [LinkedIn](https://www.linkedin.com/in/benjamin-chelvi-sandin-92a63924b)
 
 Rmilla: 
-1. [github](https://github.com/Rmilla)
-2. [LinkedIn](https://www.linkedin.com/in/robin-milla-montpellier-concepteur-d%C3%A9veloppeur-python/)
+- [github](https://github.com/Rmilla)
+- [LinkedIn](https://www.linkedin.com/in/robin-milla-montpellier-concepteur-d%C3%A9veloppeur-python/)
