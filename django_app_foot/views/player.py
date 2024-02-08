@@ -9,6 +9,7 @@ from django.http import JsonResponse
 class PlayerSerializer(serializers.ModelSerializer):
     appearances = serializers.SerializerMethodField()
 
+    # Méthode utilisée pour personnaliser la représentation JSON des apparitions d'un joueur dans le contexte de la sérialisation du modèle Player
     def get_appearances(self, obj):
         request = self.context.get('request')
         filtered_appearances = AppearancesFilters(request.GET, queryset=obj.appearances.all()).qs
@@ -62,6 +63,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
     filterset_class = PlayerFilters
     pagination_class = MyPaginationClass
 
+     # modification de la méthode list pour renvoyer une JsonResponse
     def list(self, request, *args, **kwargs):
         try:
             response = super().list(request, *args, **kwargs)
@@ -69,6 +71,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
         except ValueError as e:
             return JsonResponse({"error": str(e)}, status=500)
 
+     # mise à jour du contexte du sérialiseur avec l'objet de requête
     def get_serializer_context(self):
         context = super(PlayerViewSet, self).get_serializer_context()
         context.update({"request": self.request})

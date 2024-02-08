@@ -68,3 +68,7 @@ BChelvi:
 Rmilla: 
 - [github](https://github.com/Rmilla)
 - [LinkedIn](https://www.linkedin.com/in/robin-milla-montpellier-concepteur-d%C3%A9veloppeur-python/)
+
+SaadLARAJ: 
+- [github](https://github.com/SaadLARAJ)
+- [LinkedIn](https://www.linkedin.com/in/saad-laraj-42b979213?trk=blended-typeahead)
