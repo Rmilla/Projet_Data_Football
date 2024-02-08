@@ -8,10 +8,7 @@ class Appearance(models.Model):
     player = models.ForeignKey(
         'Player', on_delete=models.CASCADE, related_name='appearances', null=True)
     player_club_id = models.IntegerField()
-    player_current_club_id = models.IntegerField()
-    date = models.DateField()
-    player_name = models.CharField(max_length=100)
-    competition_id = models.CharField(max_length=100)
+    fk_player_club = models.ForeignKey('Club', on_delete=models.CASCADE, related_name='old_players', null=True)
     yellow_cards = models.IntegerField(default=0)
     red_cards = models.IntegerField(default=0)
     goals = models.IntegerField(default=0)

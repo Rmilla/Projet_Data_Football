@@ -1,7 +1,7 @@
 import pandas as pd
 from django.core.management.base import BaseCommand
 from django.db import transaction, connections
-from django_app_foot.models import Appearance, Player
+from django_app_foot.models import Appearance, Player, Club
 from tqdm import tqdm
 
 class Command(BaseCommand):
@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Charger le fichier CSV avec pandas par lots
-        chunk_size = 1000
+        chunk_size = 100
         data_chunks = pd.read_csv('django_app_foot/management/csv/appearances.csv', encoding="utf8", chunksize=chunk_size)
 
         # Compter le nombre total de chunks
@@ -35,21 +35,19 @@ class Command(BaseCommand):
 
                 # Utiliser filter pour vérifier l'existence du joueur
                 player_instance = Player.objects.filter(player_id=player_id).first()
-
+                club_instance, created = Club.objects.get_or_create(club_id=row['player_club_id'])
                 if player_instance is None:
                     # Si le joueur n'existe pas, passer à la ligne suivante
                     print(f"player_id {player_id} n'existe pas dans la table Player.")
                     missing_player_ids_count += 1
                     continue
-
+                
                 mon_modele_instance = Appearance(
                     appearance_id=row['appearance_id'],
                     game_id=row['game_id'],
                     player=player_instance,
                     player_club_id=row['player_club_id'],
-                    player_current_club_id=row['player_current_club_id'],
-                    date=row['date'],
-                    competition_id=row['competition_id'],
+                    fk_player_club=club_instance,
                     yellow_cards=row['yellow_cards'],
                     red_cards=row['red_cards'],
                     goals=row['goals'],

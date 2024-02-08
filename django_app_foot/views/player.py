@@ -2,15 +2,21 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import serializers, viewsets, permissions, status
 from django_filters import rest_framework as filters
 from ..models import Player
-from .appearance import AppearancesSerializer
+from .appearance import AppearancesSerializer, AppearancesFilters
 from ..pagination import MyPaginationClass
 from django.http import JsonResponse
 
 class PlayerSerializer(serializers.ModelSerializer):
-    appearances = AppearancesSerializer(many=True, read_only=True)
+    appearances = serializers.SerializerMethodField()
+
+    def get_appearances(self, obj):
+        request = self.context.get('request')
+        filtered_appearances = AppearancesFilters(request.GET, queryset=obj.appearances.all()).qs
+        return AppearancesSerializer(filtered_appearances, many=True).data
+    
     class Meta:
         model = Player
-        fields = ['player_id', 'name', 'last_season', 'appearances']
+        fields = ['player_id', 'name', 'last_season','current_club_id', 'appearances']
 
         def to_representation(self, instance):
             data = super().to_representation(instance)
@@ -62,3 +68,8 @@ class PlayerViewSet(viewsets.ModelViewSet):
             return JsonResponse(response.data, safe=False, json_dumps_params={'indent': 2})
         except ValueError as e:
             return JsonResponse({"error": str(e)}, status=500)
+
+    def get_serializer_context(self):
+        context = super(PlayerViewSet, self).get_serializer_context()
+        context.update({"request": self.request})
+        return context

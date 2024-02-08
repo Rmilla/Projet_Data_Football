@@ -7,11 +7,13 @@ from .appearance import AppearancesSerializer
 
 
 
+
 class GameSerializer(serializers.ModelSerializer):
-  
+    appearances = AppearancesSerializer(many=True, read_only= True)
     class Meta:
         model = Game
-        fields =['date','season']
+        fields =['date','season', 'appearances']
+
 class GameFilter(filters.FilterSet):
     class Meta:
         model = Game

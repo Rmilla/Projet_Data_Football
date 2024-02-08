@@ -4,7 +4,11 @@ from django_filters import rest_framework as filters
 from ..models import ClubGame
 from .games import GameSerializer
 from .club import ClubSerializer
+from ..models import Club, Player, Appearance, Game
+from .player import PlayerSerializer
 from ..pagination import MyPaginationClass
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from django.http import JsonResponse
 import json
 
