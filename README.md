@@ -1,7 +1,7 @@
 # Projet_Data_Football
 
 ## Installation et mise en service du Back-End 
-## #Cloner le repo git 
+## Cloner le repo git 
 Cloner le repo Git hub
 ### Création d'un environnement virtuel 
 Pour garantir le bon fonctionnement du projet, créez un environnement virtuel. Utilisez les commandes suivantes en fonction de votre système d'exploitation :
@@ -33,40 +33,10 @@ Vérifiez que toutes les dépendances sont correctement installées avec la comm
         pip freeze
 
 ### Import des données 
-Pour importer les données dans la base de données, utilisez les commandes suivantes pour chaque type de données :
+Pour importer les données dans la base de données, utilisez la commande suivante :
 
+        python manage.py importGeneral
 
-1. Competitions : 
-
-        python manage.py importDataCompetitions
-    
-2. Clubs :
-
-        python manage.py importDataClubs
-    
-3. Players :
-
-        python manage.py importDataPlayers
-
-4. Games :
-
-        python manage.py importDataGames
-
-5. ClubGames :
-
-        python manage.py importDataClubGames
-
-6. GameEvents :
-
-        python manage.py importDataGameEvents
-
-7. Appearances :
-
-        python manage.py importDataAppearances
-
-8. PlayersValuations :
-
-        python manage.py importDataPlayersValuations
 
 ### Lancement du serveur 
 Une fois les données importées dans la base de données, lancez le serveur en utilisant l'une des méthodes suivantes :
