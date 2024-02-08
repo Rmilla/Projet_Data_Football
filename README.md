@@ -85,9 +85,16 @@ Docker :
 Le projet Data Foot est un mini-projet permettant d'afficher diverses statistiques dans différents championnats en fonction des équipes sélectionnées. Il repose sur l'utilisation de l'API Kaggle 'Football Data from Transfermarkt', qui est régulièrement mise à jour.
 
 ## Contributeurs 
+Nocsyy : 
+[github] (https://github.com/Nocsyy)
+[portefolio] (https://nocsyy.github.io/MyPortefolio/)
+[LinkedIn] (https://www.linkedin.com/in/andy-ozdemir-942265273/)
 
-        https://github.com/Nocsyy
+BChelvi: 
+[github] (https://github.com/BChelvi)
+[portefolio] (https://www.featuredevsteam.com/)
+[LinkedIn] (https://www.linkedin.com/in/benjamin-chelvi-sandin-92a63924b)
 
-        https://github.com/BChelvi
-
-        https://github.com/Rmilla
+Rmilla: 
+[github] (https://github.com/Rmilla)
+[LinkedIn] (https://www.linkedin.com/in/robin-milla-montpellier-concepteur-d%C3%A9veloppeur-python/)
